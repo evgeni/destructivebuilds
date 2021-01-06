@@ -5,4 +5,19 @@
     - role: epel_repositories
     - role: puppet_repositories
     - role: foreman_repositories
-      foreman_repositories_version: '2.3'
+      vars:
+        foreman_repositories_version: '2.3'
+
+- hosts: all
+  become: True
+  pre_tasks:
+    - name: install foreman-installer
+      package:
+        name: foreman-installer
+        state: present
+  roles:
+    - role: theforeman.operations.installer
+      vars:
+        installer_scenario: foreman
+        installer_options:
+          - '--foreman-initial-admin-password changeme'
