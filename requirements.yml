@@ -1,3 +1,4 @@
 ---
 collections:
-- theforeman.operations
+  - theforeman.operations
+  - theforeman.foreman
