@@ -13,6 +13,8 @@
 
 - hosts: all
   become: True
+  vars_files:
+    - vars.yml
   pre_tasks:
     - name: install katello package
       package:
@@ -23,7 +25,9 @@
       vars:
         installer_scenario: katello
         installer_options:
-          - '--foreman-initial-admin-password changeme'
+          - '--foreman-initial-admin-username {{ username }}'
+          - '--foreman-initial-admin-password {{ password }}'
+          - '--foreman-initial-organization {{ organization }}'
 
 - hosts: all
   vars_files:
