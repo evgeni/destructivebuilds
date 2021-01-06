@@ -1,0 +1,3 @@
+[submodule "forklift"]
+	path = forklift
+	url = https://github.com/theforeman/forklift

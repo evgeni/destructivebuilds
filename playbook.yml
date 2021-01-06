@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: True
+  roles:
+    - role: epel_repositories
+    - role: puppet_repositories
+    - role: foreman_repositories
+      foreman_repositories_version: '2.3'
