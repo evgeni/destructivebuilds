@@ -7,17 +7,20 @@
     - role: foreman_repositories
       vars:
         foreman_repositories_version: '2.3'
+    - role: katello_repositories
+      vars:
+        katello_repositories_version: '3.18'
 
 - hosts: all
   become: True
   pre_tasks:
-    - name: install foreman-installer
+    - name: install katello package
       package:
-        name: foreman-installer
+        name: katello
         state: present
   roles:
     - role: theforeman.operations.installer
       vars:
-        installer_scenario: foreman
+        installer_scenario: katello
         installer_options:
           - '--foreman-initial-admin-password changeme'
