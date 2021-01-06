@@ -31,6 +31,16 @@
   roles:
     - role: theforeman.foreman.repositories
   tasks:
+    - name: "Sync repositories"
+      theforeman.foreman.repository_sync:
+        username: "{{ username }}"
+        password: "{{ password }}"
+        server_url: "{{ server_url }}"
+        validate_certs: "{{ validate_certs }}"
+        organization: "{{ organization }}"
+        product: "{{ item.name }}"
+      loop: "{{ products }}"
+
     - name: "Create Content Views"
       theforeman.foreman.content_view:
         username: "{{ username }}"
@@ -54,3 +64,20 @@
         composite: true
         auto_publish: true
       loop: "{{ composite_content_views }}"
+
+    - name: "Initiall Publish of Content Views"
+      theforeman.foreman.content_view_version:
+        username: "{{ username }}"
+        password: "{{ password }}"
+        server_url: "{{ server_url }}"
+        validate_certs: "{{ validate_certs }}"
+        organization: "{{ organization }}"
+        content_view: "{{ item.name }}"
+        version: "1.0"
+      loop: "{{ content_views }}"
+
+- hosts: all
+  vars_files:
+    - vars.yml
+  roles:
+    - role: theforeman.foreman.activation_keys
