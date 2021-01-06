@@ -21,3 +21,24 @@ products:
       - name: Foreman Client CentOS 7
         url: https://yum.theforeman.org/client/2.3/el7/x86_64/
         content_type: yum
+# how can this be constructed from products? I want one CV for each product, with all repos.
+content_views:
+  - name: CentOS 7
+    repositories:
+      - name: CentOS 7 Base x86_64
+        product: CentOS 7
+      - name: CentOS 7 Extras x86_64
+        product: CentOS 7
+      - name: CentOS 7 Updates x86_64
+        product: CentOS 7
+  - name: Foreman Client
+    repositories:
+      - name: Foreman Client CentOS 7
+        product: Foreman Client
+composite_content_views:
+  - name: CentOS 7 CCV
+    components:
+      - content_view: CentOS 7
+        latest: true
+      - content_view: Foreman Client
+        latest: true

@@ -30,3 +30,27 @@
     - vars.yml
   roles:
     - role: theforeman.foreman.repositories
+  tasks:
+    - name: "Create Content Views"
+      theforeman.foreman.content_view:
+        username: "{{ username }}"
+        password: "{{ password }}"
+        server_url: "{{ server_url }}"
+        validate_certs: "{{ validate_certs }}"
+        organization: "{{ organization }}"
+        name: "{{ item.name }}"
+        repositories: "{{ item.repositories }}"
+      loop: "{{ content_views }}"
+
+    - name: "Create Composite Content Views"
+      theforeman.foreman.content_view:
+        username: "{{ username }}"
+        password: "{{ password }}"
+        server_url: "{{ server_url }}"
+        validate_certs: "{{ validate_certs }}"
+        organization: "{{ organization }}"
+        name: "{{ item.name }}"
+        components: "{{ item.components }}"
+        composite: true
+        auto_publish: true
+      loop: "{{ composite_content_views }}"
