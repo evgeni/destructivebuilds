@@ -1,0 +1,23 @@
+---
+server_url: https://foreman.yatsu.example.com
+username: admin
+password: changeme
+validate_certs: False
+organization: Default Organization
+products:
+  - name: CentOS 7
+    repositories:
+      - name: CentOS 7 Base x86_64
+        content_type: yum
+        url: http://mirror.centos.org/centos/7/os/x86_64/
+      - name: CentOS 7 Extras x86_64
+        content_type: yum
+        url: http://mirror.centos.org/centos/7/extras/x86_64/
+      - name: CentOS 7 Updates x86_64
+        content_type: yum
+        url: http://mirror.centos.org/centos/7/updates/x86_64/
+  - name: Foreman Client
+    repositories:
+      - name: Foreman Client CentOS 7
+        url: https://yum.theforeman.org/client/2.3/el7/x86_64/
+        content_type: yum

@@ -24,3 +24,9 @@
         installer_scenario: katello
         installer_options:
           - '--foreman-initial-admin-password changeme'
+
+- hosts: all
+  vars_files:
+    - vars.yml
+  roles:
+    - role: theforeman.foreman.repositories
