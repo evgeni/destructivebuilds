@@ -1,9 +1,13 @@
 ---
+foreman_repositories_version: '2.3'
+katello_repositories_version: '3.18'
+
 server_url: https://foreman.yatsu.example.com
 username: admin
 password: changeme
 validate_certs: False
 organization: Default Organization
+
 products:
   - name: CentOS 7
     repositories:
@@ -24,6 +28,7 @@ products:
       - name: Foreman Client CentOS 7
         url: https://yum.theforeman.org/client/2.3/el7/x86_64/
         content_type: yum
+
 # how can this be constructed from products? I want one CV for each product, with all repos.
 content_views:
   - name: CentOS 7
@@ -38,6 +43,7 @@ content_views:
     repositories:
       - name: Foreman Client CentOS 7
         product: Foreman Client
+
 composite_content_views:
   - name: CentOS 7 CCV
     components:
@@ -45,6 +51,7 @@ composite_content_views:
         latest: true
       - content_view: Foreman Client
         latest: true
+
 activation_keys:
   - name: CentOS7
     subscriptions:

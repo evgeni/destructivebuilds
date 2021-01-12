@@ -1,15 +1,13 @@
 ---
 - hosts: all
   become: True
+  vars_files:
+    - vars.yml
   roles:
     - role: epel_repositories
     - role: puppet_repositories
     - role: foreman_repositories
-      vars:
-        foreman_repositories_version: '2.3'
     - role: katello_repositories
-      vars:
-        katello_repositories_version: '3.18'
 
 - hosts: all
   become: True
