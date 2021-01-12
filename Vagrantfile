@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define "default" do |node|
+  config.vm.define "foreman" do |node|
     node.vm.hostname = "foreman.yatsu.example.com"
     node.vm.box = "centos/7"
     node.vm.synced_folder ".", "/vagrant", disabled: true
