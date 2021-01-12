@@ -6,7 +6,7 @@
   tasks:
     - name: install Katello CA
       package:
-        name: http://foreman.yatsu.example.com/pub/katello-ca-consumer-latest.noarch.rpm
+        name: "http://{{ foreman_server }}/pub/katello-ca-consumer-latest.noarch.rpm"
 
     - name: subscribe to Katello
       redhat_subscription:
@@ -16,4 +16,4 @@
     - name: add SSH key
       authorized_key:
         user: root
-        key: https://foreman.yatsu.example.com:9090/ssh/pubkey
+        key: "https://{{ foreman_server }}:9090/ssh/pubkey"

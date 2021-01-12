@@ -2,6 +2,8 @@
 foreman_repositories_version: '2.3'
 katello_repositories_version: '3.18'
 
+foreman_server: foreman.yatsu.example.com
+
 installer_scenario: katello
 installer_options:
   - '--foreman-initial-admin-username {{ username }}'
@@ -12,7 +14,7 @@ installer_options:
   - '--enable-foreman-plugin-remote-execution'
   - '--enable-foreman-proxy-plugin-remote-execution-ssh'
 
-server_url: https://foreman.yatsu.example.com
+server_url: "https://{{ foreman_server }}"
 username: admin
 password: changeme
 validate_certs: False
