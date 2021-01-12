@@ -20,16 +20,6 @@
         state: present
   roles:
     - role: theforeman.operations.installer
-      vars:
-        installer_scenario: katello
-        installer_options:
-          - '--foreman-initial-admin-username {{ username }}'
-          - '--foreman-initial-admin-password {{ password }}'
-          - '--foreman-initial-organization {{ organization }}'
-          - '--enable-foreman-plugin-ansible'
-          - '--enable-foreman-proxy-plugin-ansible'
-          - '--enable-foreman-plugin-remote-execution'
-          - '--enable-foreman-proxy-plugin-remote-execution-ssh'
 
 - hosts: all
   vars_files:
