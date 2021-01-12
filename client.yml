@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: True
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: install Katello CA
+      package:
+        name: http://foreman.yatsu.example.com/pub/katello-ca-consumer-latest.noarch.rpm
+
+    - name: subscribe to Katello
+      redhat_subscription:
+        org_id: "{{ organization | theforeman.foreman.cp_label }}"
+        activationkey: "{{ activation_keys[0].name }}"
+
+    - name: add SSH key
+      authorized_key:
+        user: root
+        key: https://foreman.yatsu.example.com:9090/ssh/pubkey
